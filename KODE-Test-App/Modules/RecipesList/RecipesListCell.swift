@@ -9,13 +9,7 @@
 import UIKit
 
 class RecipesListCell: UITableViewCell {
-    @IBOutlet weak var recipeImage: UIImageView! {
-        didSet {
-            recipeImage.layer.masksToBounds = true
-            recipeImage.layer.cornerRadius = 5
-        }
-    }
-    
+    @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class RecipesListViewController: UITableViewController {
     
@@ -24,7 +23,6 @@ class RecipesListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
         viewModel.getRecipes()
         bindToViewModel()
@@ -57,5 +55,4 @@ class RecipesListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectCell(indexPath: indexPath)
     }
-    
 }

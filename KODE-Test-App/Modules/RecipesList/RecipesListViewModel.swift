@@ -96,7 +96,6 @@ class RecipesListViewModel {
             })
             state = 0
         }
-        
         onDidUpdate?()
     }
 }
