@@ -19,6 +19,11 @@ class SearchResultsUpdater: NSObject, UISearchResultsUpdating {
   
   func updateSearchResults(for searchController: UISearchController) {
     guard let searchInput = searchController.searchBar.text else { return }
+    
     viewModel.filterRecipes(input: searchInput)
+    
+    if !searchController.isActive {
+        viewModel.getRecipes()
+    }
   }
 }

@@ -25,10 +25,16 @@ class RecipesListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "RecipesListCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
-        
+        setupTableView()
         viewModel.getRecipes()
-        
+        bindToViewModel()
+    }
+    
+    private func setupTableView() {
+        tableView.register(UINib(nibName: "RecipesListCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+    }
+    
+    private func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
             self?.tableView.reloadData()
         }
@@ -37,25 +43,13 @@ class RecipesListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Extract to ViewModel method
         return viewModel.numberOfRows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! RecipesListCell
         
-        // Extract to ViewModel method
-        if let image = viewModel.recipesList?.recipes![indexPath.row].images[0] {
-            cell.recipeImage.kf.setImage(with: URL(string: image))
-        }
-        
-        if let description = viewModel.recipesList?.recipes![indexPath.row].description {
-            cell.descriptionLabel.text = description
-        } else {
-            cell.descriptionLabel.text = "Ooups, there is no description!"
-        }
-        
-        cell.titleLabel.text = viewModel.recipesList?.recipes![indexPath.row].name
+        viewModel.setupCellContent(cell: cell, indexPath: indexPath)
 
         return cell
     }

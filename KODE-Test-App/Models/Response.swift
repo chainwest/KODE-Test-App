@@ -11,6 +11,7 @@ import Foundation
 struct Recipe: Decodable {
     var name: String
     var images: [String]
+    var lastUpdated: Int
     var instructions: String
     var description: String?
     var difficulty: Int

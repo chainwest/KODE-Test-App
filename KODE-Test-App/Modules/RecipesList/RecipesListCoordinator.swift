@@ -24,6 +24,7 @@ class RecipesListCoordinator: Coordinator {
 
     override func start() {
         viewModel.delegate = self
+        searchResultsUpdater = SearchResultsUpdater(viewModel: viewModel)
         let recipesVC = RecipesListViewController(viewModel: viewModel)
         setupNavigationBar(viewController: recipesVC)
         rootViewController.setViewControllers([recipesVC], animated: false)
@@ -39,6 +40,8 @@ class RecipesListCoordinator: Coordinator {
         searchController.obscuresBackgroundDuringPresentation = false
         viewController.navigationItem.searchController = searchController
         viewController.navigationItem.hidesSearchBarWhenScrolling = true
+        
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: viewModel, action: #selector(viewModel.sortTableViewRows))
     }
 }
 

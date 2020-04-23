@@ -8,5 +8,7 @@ target 'KODE-Test-App' do
   # Pods for KODE-Test-App
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'moa', '~> 12.0'
+  pod 'Auk', '~> 11.0'
 
 end

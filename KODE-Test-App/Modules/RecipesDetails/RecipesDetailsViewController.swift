@@ -8,13 +8,12 @@
 
 import UIKit
 import Kingfisher
+import Auk
 
 class RecipesDetailsViewController: UIViewController {
     
     private let viewModel: RecipesDetailsViewModel?
     
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var difficultyLabel: UILabel!
@@ -44,23 +43,20 @@ class RecipesDetailsViewController: UIViewController {
         descriptionLabel.text = viewModel?.recipeDescription
         instructionsLabel.text = viewModel?.recipeInstruction
         difficultyLabel.text = viewModel?.recipeDifficulty
-        setupStackView(viewModel?.imagesLinks)
+        setupScrollView()
     }
     
-    private func setupStackView(_ linksList: [String]?) {
-        for link in 0..<linksList!.count {
-            let imageView = UIImageView()
-            let url = URL(string: linksList![link])
-            
-            imageView.kf.setImage(with: url!)
-            
-            let xPosition = stackView.bounds.width * CGFloat(link)
-            imageView.frame = CGRect(x: xPosition, y: 0, width: stackView.frame.width, height: stackView.frame.height)
-            imageView.layer.masksToBounds = true
-            imageView.layer.cornerRadius = 10
-            imageView.contentMode = .scaleToFill
-            
-            stackView.addArrangedSubview(imageView)
+    private func setupScrollView() {
+        scrollView.layer.masksToBounds = true
+        scrollView.layer.cornerRadius = 10
+        scrollView.auk.settings.pageControl.backgroundColor = .clear
+        scrollView.auk.settings.pageControl.pageIndicatorTintColor = .darkText
+        scrollView.auk.settings.contentMode = .scaleAspectFill
+        
+        if let links = viewModel?.imagesLinks {
+            for link in links {
+                scrollView.auk.show(url: link)
+            }
         }
     }
 
