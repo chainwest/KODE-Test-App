@@ -41,7 +41,8 @@ class RecipesListCoordinator: Coordinator {
         viewController.navigationItem.searchController = searchController
         viewController.navigationItem.hidesSearchBarWhenScrolling = true
         
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: viewModel, action: #selector(viewModel.sortTableViewRows))
+        let image = UIImage(named: "up-down-arrow")
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: viewModel, action: #selector(viewModel.sortTableViewRows))
     }
 }
 

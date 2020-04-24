@@ -13,6 +13,7 @@ protocol RecipesListViewModelDelegate: class {
 }
 
 class RecipesListViewModel {
+    
     weak var delegate: RecipesListViewModelDelegate?
     
     var onDidUpdate: (() -> Void)?
@@ -32,9 +33,9 @@ class RecipesListViewModel {
         apiService.getRecipesList { response in
             switch response {
             case .success(let data):
-                self.recipesList = data.recipes?.sorted(by: { (first, second) -> Bool in
+                self.recipesList = data.recipes?.sorted { first, second -> Bool in
                     first.lastUpdated < second.lastUpdated
-                })
+                }
                 
                 self.filteredRecipesList = self.recipesList
                 
@@ -59,7 +60,7 @@ class RecipesListViewModel {
         
         cell.recipeImage.kf.setImage(with: url)
         cell.titleLabel.text = recipesList![indexPath.row].name
-        cell.descriptionLabel.text = recipesList![indexPath.row].description ?? "Ooups, there is no description!"
+        cell.descriptionLabel.text = recipesList![indexPath.row].description
     }
     
     //MARK: - Search bar filter method
@@ -70,13 +71,15 @@ class RecipesListViewModel {
           return
         }
         
-        filteredRecipesList = recipesList?.filter({ recipe -> Bool in
-            return recipe.name.lowercased().contains(input.lowercased()) || recipe.instructions.lowercased().contains(input.lowercased())
-        })
+        filteredRecipesList = recipesList?.filter { recipe -> Bool in
+            recipe.name.lowercased().contains(input.lowercased()) ||
+            recipe.instructions.lowercased().contains(input.lowercased()) ||
+            recipe.description!.lowercased().contains(input.lowercased())
+        }
         updateRecipes(recipes: filteredRecipesList)
     }
     
-    private func updateRecipes(recipes: [Recipe]?) {
+    func updateRecipes(recipes: [Recipe]?) {
         self.recipesList? = recipes!
         self.numberOfRows = recipesList!.count
         onDidUpdate?()
@@ -86,14 +89,14 @@ class RecipesListViewModel {
     
     @objc func sortTableViewRows(sender: UIButton!) {
         if state == 0 {
-            recipesList!.sort(by: { (first, second) -> Bool in
+            recipesList!.sort { first, second -> Bool in
                 first.name < second.name
-            })
+            }
             state = 1
         } else {
-            recipesList!.sort(by: { (first, second) -> Bool in
+            recipesList!.sort { first, second -> Bool in
                 first.lastUpdated < second.lastUpdated
-            })
+            }
             state = 0
         }
         onDidUpdate?()

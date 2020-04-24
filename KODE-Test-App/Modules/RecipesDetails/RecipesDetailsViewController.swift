@@ -51,12 +51,14 @@ class RecipesDetailsViewController: UIViewController {
         scrollView.auk.settings.pageControl.backgroundColor = .clear
         scrollView.auk.settings.pageControl.pageIndicatorTintColor = .darkText
         scrollView.auk.settings.contentMode = .scaleAspectFill
+        scrollView.auk.settings.placeholderImage = UIImage(named: "icons8-ios-application-placeholder-50")
         
         if let links = viewModel?.imagesLinks {
             for link in links {
                 scrollView.auk.show(url: link)
             }
         }
-    }
 
+    }
+    
 }

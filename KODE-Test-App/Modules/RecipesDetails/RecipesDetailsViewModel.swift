@@ -6,7 +6,7 @@
 //  Copyright © 2020 Evgeniy. All rights reserved.
 //
 
-import Kingfisher
+import UIKit
 
 protocol RecipesDetailsViewModelDelegate: class {
     func recipesDetailsViewModelDidFinish(_ viewModel: RecipesDetailsViewModel)
