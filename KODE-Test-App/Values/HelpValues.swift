@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+enum HelpValues {
+    static var sortFlag = true
+    static var loadingFlag = true
+    static var lowercasedInput = ""
+}

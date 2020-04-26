@@ -6,12 +6,14 @@ PODS:
     - Kingfisher/Core (= 5.13.2)
   - Kingfisher/Core (5.13.2)
   - moa (12.0.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire
   - Auk (~> 11.0)
   - Kingfisher
   - moa (~> 12.0)
+  - SVProgressHUD
 
 SPEC REPOS:
   trunk:
@@ -19,13 +21,15 @@ SPEC REPOS:
     - Auk
     - Kingfisher
     - moa
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   Auk: 7cc533252e2caaaa36b2be19c0b799f6057c365a
   Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
   moa: e2346f12de6c65bbca4d103950d45db9e46785ef
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: d226f74ea3e7f0fc035fbda41c62a5fa2a91548c
+PODFILE CHECKSUM: 9b3cb3f49f4b5a70fa7f4a2d89f3a4a566c2dbb5
 
 COCOAPODS: 1.9.1

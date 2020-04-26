@@ -14,7 +14,8 @@ class RecipesListCoordinator: Coordinator {
 
     var viewModel: RecipesListViewModel = {
         let apiService = ApiService()
-        let viewModel = RecipesListViewModel(apiService: apiService)
+        let repository = DataRepository(apiService: apiService)
+        let viewModel = RecipesListViewModel(repository: repository)
         return viewModel
     }()
 
@@ -41,8 +42,9 @@ class RecipesListCoordinator: Coordinator {
         viewController.navigationItem.searchController = searchController
         viewController.navigationItem.hidesSearchBarWhenScrolling = true
         
-        let image = UIImage(named: "up-down-arrow")
+        let image = UIImage(named: "icons8-sorting")
         viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: viewModel, action: #selector(viewModel.sortTableViewRows))
+        viewController.navigationItem.rightBarButtonItem?.tintColor = .darkText
     }
 }
 

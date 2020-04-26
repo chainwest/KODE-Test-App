@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class RecipesListViewController: UITableViewController {
-    
     private let viewModel: RecipesListViewModel
     
     init(viewModel: RecipesListViewModel) {
@@ -24,7 +24,6 @@ class RecipesListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        viewModel.getRecipes()
         bindToViewModel()
     }
     
@@ -35,6 +34,12 @@ class RecipesListViewController: UITableViewController {
     private func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
             self?.tableView.reloadData()
+            
+            if HelpValues.loadingFlag {
+                SVProgressHUD.show()
+            } else {
+                SVProgressHUD.dismiss()
+            }
         }
     }
 

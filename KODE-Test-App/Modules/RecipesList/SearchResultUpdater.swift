@@ -26,4 +26,6 @@ class SearchResultsUpdater: NSObject, UISearchResultsUpdating {
             viewModel.getRecipes()
         }
     }
+    
+    
 }

@@ -31,7 +31,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-ios-application-placeholder-50" translatesAutoresizingMaskIntoConstraints="NO" id="YyF-9x-6KX">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YyF-9x-6KX">
                         <rect key="frame" x="16" y="8" width="99" height="96"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -65,7 +65,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="177.12053571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="icons8-ios-application-placeholder-50" width="50" height="50"/>
-    </resources>
 </document>
